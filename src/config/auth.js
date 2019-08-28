@@ -1,4 +1,4 @@
 export default {
-  secret: '2efb092b8414f826e5e3194d287a04af',
+  secret: process.env.APP_SECRET,
   expiresIn: '7d',
 };

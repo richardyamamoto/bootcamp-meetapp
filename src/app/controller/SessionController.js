@@ -23,7 +23,7 @@ class SessionController {
         name,
         email,
       },
-      token: jwt.sign({ id }, '2efb092b8414f826e5e3194d287a04af', {
+      token: jwt.sign({ id }, process.env.APP_SECRET, {
         expiresIn: '7d',
       }),
     });
