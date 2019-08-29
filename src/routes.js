@@ -25,9 +25,16 @@ routes.use(authMiddleware);
 
 // User in Session
 routes.put('/users', UserController.update);
-// # Create Meetup
+// # Meetups
+// ## Create Meetup
 routes.post('/meetups', MeetupController.store);
-// # Upload file
+// ## Update Meetup
+routes.put('/meetups/:id', MeetupController.update);
+// ## List Meetup
+routes.get('/meetups', MeetupController.index);
+// ## Delete Meetup
+routes.delete('/meetups/:id', MeetupController.delete);
+// ## Upload file
 routes.post('/files', upload.single('file'), FileController.store);
 
 export default routes;
