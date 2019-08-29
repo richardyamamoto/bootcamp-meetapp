@@ -16,6 +16,7 @@ class SubscriptionController {
           model: Meetup,
           where: {
             date: {
+              // Greater than current
               [Op.gt]: new Date(),
             },
           },
@@ -37,7 +38,7 @@ class SubscriptionController {
     if (meetup.user_id === req.userId) {
       return res
         .status(400)
-        .json({ error: "Can't subscribe to you own meetups" });
+        .json({ error: "Can't subscribe to your own meetups" });
     }
 
     if (meetup.past) {
@@ -69,6 +70,7 @@ class SubscriptionController {
       user_id: user.id,
       meetup_id: meetup.id,
     });
+
     return res.json(subscription);
 
     /* await Queue.add(SubscriptionMail.key, {
