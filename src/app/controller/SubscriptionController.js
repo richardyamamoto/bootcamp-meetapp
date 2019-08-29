@@ -2,8 +2,8 @@ import { Op } from 'sequelize';
 import User from '../models/User';
 import Meetup from '../models/Meetup';
 import Subscription from '../models/Subscription';
-/* import Queue from '../../lib/Queue';
-import SubscriptionMail from '../jobs/SubscriptionMail'; */
+import Queue from '../../lib/Queue';
+import SubscriptionMail from '../jobs/SubscriptionMail';
 
 class SubscriptionController {
   async index(req, res) {
@@ -71,12 +71,11 @@ class SubscriptionController {
       meetup_id: meetup.id,
     });
 
-    return res.json(subscription);
-
-    /* await Queue.add(SubscriptionMail.key, {
+    await Queue.add(SubscriptionMail.key, {
       meetup,
       user,
-    }); */
+    });
+    return res.json(subscription);
   }
 }
 
